@@ -89,7 +89,9 @@ def main():
     if mbti:
         st.write("당신의 MBTI는 ", mbti, " 입니다.")
 
-        birthday = st.text_input("당신의 생일은?", "")
+        birthday = st.text_input(
+            "당신의 생일은?", "", placeholder="입력예 : 1988-07-24"
+        )
 
         if birthday:
             st.write("당신의 생일은  ", birthday, " 입니다.")
