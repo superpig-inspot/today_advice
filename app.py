@@ -38,10 +38,10 @@ def processing (mbti, biorythm) :
     #st.markdown(line1)
 
     #gpt 연동
-    model = ChatOllama(model="gemma2:latest", temperature=1.5, base_url="http://192.168.1.230:11434", callbacks=[StreamingStdOutCallbackHandler()])
+    model = ChatOllama(model="gemma2:2b", temperature=1.5, base_url="http://192.168.1.230:11434", callbacks=[StreamingStdOutCallbackHandler()])
     prompt = ChatPromptTemplate.from_template(
-        """당신은 MBTI, 바이오리듬 관련 전문상담사 입니다. 
-        MBTI가 {mbti} 이고 바이오리듬(신체: {p}, 감성 {e}, 지성{i}) 이 인 사람의 오늘에 대해서 조언해주세요.
+        """당신은 MBTI와 바이오리듬 관련 전문상담사 입니다. 
+        MBTI가 {mbti} 이고 바이오리듬(신체: {p}, 감성 {e}, 지성{i}) 이 인 사람의 오늘에 대해서 간략히게 조언해주세요.
         """
     )
 
@@ -53,7 +53,11 @@ def processing (mbti, biorythm) :
 def main () :
     st.title("나의 오늘은 어떨까?")
 
-    mbti = st.text_input("당신의 MBTI는?", "")
+    #mbti = st.text_input("당신의 MBTI는?", "")
+    mbti = st.selectbox(
+        "당신의 MBTI는?",
+        ("선택", "ISTJ", "ISFJ", "INFJ", "INTJ", "ISTP", "ISFP", "INFP", "INTP", "ESTP", "ESFP", "ENFP", "ENTP", "ESTJ", "ESFJ", "ENFJ", "ENTJ"),
+    )
     if mbti :
         st.write("당신의 MBTI는 ", mbti , " 입니다." )
 
