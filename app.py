@@ -49,7 +49,7 @@ def processing(mbti, biorythm):
     )
     prompt = ChatPromptTemplate.from_template(
         """당신은 MBTI와 바이오리듬 관련 전문상담사 입니다. 
-        MBTI가 {mbti} 이고 바이오리듬(신체: {p}, 감성 {e}, 지성{i}) 이 인 사람의 오늘에 대해서 간략히게 조언해주세요.
+        MBTI가 {mbti} 이고 바이오리듬이 신체: {p}, 감성 {e}, 지성{i} 인 사람의 오늘에 대해서 구체적인 활동에 대한 예를 들어 재미있게 조언해주세요.
         """
     )
 
