@@ -35,14 +35,14 @@ def cal_biorhythms(birthdate):
     }
 
 
-def processing(mbti, biorythm):
+def processing(mbti, biorythm, llmModel):
     st.subheader("오늘 당신은?")
     # line1 = "당신의 MBTI는 **" + mbti + "** 입니다."
     # st.markdown(line1)
 
     # gpt 연동
     model = ChatOllama(
-        model="EEVE-korean-10.8B:latest",
+        model=llmModel,
         temperature=1.5,
         base_url="http://211.202.65.151:11434",
         callbacks=[StreamingStdOutCallbackHandler()],
@@ -64,6 +64,16 @@ def processing(mbti, biorythm):
 
 def main():
     st.title("나의 오늘은 어떨까?")
+
+    llmModel = st.radio(
+        "답변에 사용할 LLM Model",
+        ["gemma2:2b", "gemma2:latest", "EEVE-korean-10.8B:latest"],
+        captions=[
+            "Google Gemma2 2b",
+            "Google Gemma2 9b",
+            "EEVE Model(야놀자에서 한국어로 조정한 버젼)",
+        ],
+    )
 
     # mbti = st.text_input("당신의 MBTI는?", "")
     lstMbti = {
@@ -111,7 +121,7 @@ def main():
 
             # st.text("오늘의 바이오리듬은 : " + p)
 
-            processing(lstMbti[mbti], biorythm)
+            processing(lstMbti[mbti], biorythm, llmModel)
 
 
 if __name__ == "__main__":
