@@ -42,7 +42,7 @@ def processing(mbti, biorythm):
 
     # gpt 연동
     model = ChatOllama(
-        model="gemma2:latest",
+        model="EEVE-korean-10.8B:latest",
         temperature=1.5,
         base_url="http://211.202.65.151:11434",
         callbacks=[StreamingStdOutCallbackHandler()],
