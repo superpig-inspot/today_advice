@@ -67,11 +67,12 @@ def main():
 
     llmModel = st.radio(
         "답변에 사용할 LLM Model",
-        ["gemma2:2b", "gemma2:latest", "EEVE-korean-10.8B:latest"],
+        ["gemma2:2b", "gemma2:latest", "EEVE-korean-10.8B:latest", "llama-3-Korean-Bllossom:latest"],
         captions=[
             "Google Gemma2 2b",
             "Google Gemma2 9b",
             "EEVE Model(야놀자에서 한국어로 조정한 버젼)",
+            "llama-3-Korean-Bllossom(llama-3의 Bllosom 한글화 버젼)",
         ],
     )
 
