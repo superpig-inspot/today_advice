@@ -100,8 +100,8 @@ def main():
     if mbti:
         st.write("당신의 MBTI는 ", mbti, " 입니다.")
 
-        birthday = st.text_input(
-            "당신의 생일은?", "", placeholder="입력예 : 1988-07-24"
+        birthday = st.date_input(
+            "당신의 생일은?", datetime(2000, 1, 1), format="YYYY-MM-DD"
         )
 
         if birthday:
@@ -109,7 +109,7 @@ def main():
 
     if mbti and birthday:
         if st.button("확인"):
-            today_biorythm = cal_biorhythms(birthday)
+            today_biorythm = cal_biorhythms(birthday.strftime("%Y-%m-%d"))
             p = str(round(today_biorythm["physical"], 2))
             e = str(round(today_biorythm["emotional"], 2))
             i = str(round(today_biorythm["intellectual"], 2))
