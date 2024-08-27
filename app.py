@@ -40,11 +40,17 @@ def processing(mbti, biorythm, llmModel):
     # line1 = "당신의 MBTI는 **" + mbti + "** 입니다."
     # st.markdown(line1)
 
+    baseUrl = "http://211.202.65.151:11434"
+
+    if llmModel == "colab":
+        llmModel = "gemma2:9b"
+        baseUrl = "https://deee-34-143-150-41.ngrok-free.app"
+
     # gpt 연동
     model = ChatOllama(
         model=llmModel,
         temperature=1.5,
-        base_url="http://211.202.65.151:11434",
+        base_url=baseUrl,
         callbacks=[StreamingStdOutCallbackHandler()],
     )
     prompt = ChatPromptTemplate.from_template(
@@ -67,10 +73,17 @@ def main():
 
     llmModel = st.radio(
         "답변에 사용할 LLM Model",
-        ["gemma2:2b", "gemma2:latest", "EEVE-korean-10.8B:latest", "llama-3-Korean-Bllossom:latest"],
+        [
+            "gemma2:2b",
+            "gemma2:latest",
+            "colab",
+            "EEVE-korean-10.8B:latest",
+            "llama-3-Korean-Bllossom:latest",
+        ],
         captions=[
             "Google Gemma2 2b",
             "Google Gemma2 9b",
+            "Colab Google Gemma2 9b",
             "EEVE Model(야놀자에서 한국어로 조정한 버젼)",
             "llama-3-Korean-Bllossom(llama-3의 Bllosom 한글화 버젼)",
         ],
