@@ -1,2 +1,5 @@
 streamlit
 langchain_community
+numpy
+pandas
+matplotlib
