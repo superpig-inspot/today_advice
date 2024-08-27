@@ -51,7 +51,7 @@ def processing(mbti, biorythm, llmModel):
         model=llmModel,
         temperature=1.5,
         base_url=baseUrl,
-        callbacks=[StreamingStdOutCallbackHandler()],
+        callbacks=[StreamingStdOutCallbackHandler()], 
     )
     prompt = ChatPromptTemplate.from_template(
         """당신은 MBTI와 바이오리듬 관련 전문상담사 입니다. 
